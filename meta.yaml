@@ -1,0 +1,55 @@
+{% set name = "uq360" %}
+{% set datalinkname = "UQ360" %}
+{% set version = "0.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  # url: "https://pypi.io/packages/source/{{ datalinkname[0] }}/{{ datalinkname }}/{{ datalinkname }}-{{ version }}.tar.gz"
+  # sha256: 5a6c803dd981f7d0c342642b87dcf1099c0a71472bdf99235b7a63ea1b718704
+  path: .
+
+build:
+  number: 1
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - python {{ python }}
+    - setuptools
+  host:
+    - python
+  run:
+    - python
+    - numpy>=1.16.5,<1.21
+    - scipy>=1.2.0
+    - pandas>=0.24.0
+    - scikit-learn>=0.24,<1
+    - matplotlib>=3.2
+    - autograd>=1.3
+    - pytorch>=1.6.0
+    - gpytorch>=1.3.0
+    - botorch>=0.5.1
+    - tqdm>=4.42.0
+    - tensorflow>=1.15,>2.1,<=2.5
+    - tensorflow-hub
+    - umap-learn>=0.3.10
+    - tabulate
+    - requests
+
+test:
+  imports:
+    - uq360
+
+about:
+  home: "https://github.com/IBM/UQ360"
+  license: Apache Software
+  license_family: APACHE
+  license_file: 
+  summary: "The Uncertainty Quantification 360 (UQ360) is an open-source toolkit with a Python package to provide data science practitioners and developers access to state-of-the-art algorithms, to streamline the process of estimating, evaluating, improving, and communicating uncertainty of machine learning models as common practices for AI transparency."
+  doc_url: 
+  dev_url: "https://github.com/IBM/UQ360"
+
